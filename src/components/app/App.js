@@ -2,6 +2,7 @@ import { useState, } from 'react';
 import "./App.css"
 import List from "../llist/List";
 import Searcher from "../search-part/searcher";
+import Adding from "../adding-part/Adding";
 
 
 
@@ -58,11 +59,12 @@ function App() {
     return (
         <div className="container">
             <Searcher getFound={getFound} />
-            <div className="row justify-content-center">
+            <div className="row">
                 <div className="col-xl-6 col-lg-8 col-md-10">
                     <table className="table table-striped">
                         <List persons={searching(persons, found)} onDelete={onDelete} onLike={onLike} onLove={onLove} />
                     </table>
+                    <Adding />
                 </div>
             </div>
         </div>

@@ -14,7 +14,7 @@ function Searcher({ getFound, }) {
     }
 
     return (
-        <div className="row mt-3 justify-content-center">
+        <div className="row mt-3">
             <div className="col-xl-5 col-lg-8 col-md-10">
                 <div className="input-group my-3">
                     <input
