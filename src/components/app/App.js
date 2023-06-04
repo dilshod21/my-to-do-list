@@ -1,10 +1,9 @@
 import { useState, } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import "./App.css"
 import List from "../llist/List";
 import Searcher from "../search-part/searcher";
 import Adding from "../adding-part/Adding";
-
-
 
 
 function App() {
@@ -16,7 +15,8 @@ function App() {
         {id: 4, name: "Dilshod", like: false, love: false}
     ]);
 
-    const [found, setFound] = useState("")
+    const [found, setFound] = useState("");
+    const [filter, setFilter] = useState("");
 
     const onDelete = (id) => {
         const newArr = persons.filter(c => c.id !== id);
@@ -56,6 +56,13 @@ function App() {
     };
 
     const getFound = (found) => setFound(found);
+
+    const onAdder = (newPerson) => {
+
+        const newAdder = [...persons , { ...newPerson, id: uuidv4()}];
+        setPersons(newAdder);
+    }
+
     return (
         <div className="container">
             <Searcher getFound={getFound} />
@@ -64,7 +71,7 @@ function App() {
                     <table className="table table-striped">
                         <List persons={searching(persons, found)} onDelete={onDelete} onLike={onLike} onLove={onLove} />
                     </table>
-                    <Adding />
+                    <Adding onAdder={onAdder} />
                 </div>
             </div>
         </div>

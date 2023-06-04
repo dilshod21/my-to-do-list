@@ -2,15 +2,15 @@
 
 
 
-function ListItem({ id, img, name, like, love, onDelete, onLike, onLove }) {
+function ListItem({ id, number, name, like, love, onDelete, onLike, onLove }) {
 
     return (
-        <tr>
+        <tr key={id}>
             <td>
 
                 <div className="d-flex align-items-center justify-content-between">
                     <div className="d-flex align-items-center">
-                        <p>{id}</p>
+                        <p>{number + 1}</p>
 
                         <p className="mx-2">{name}</p>
                     </div>

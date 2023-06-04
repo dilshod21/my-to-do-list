@@ -4,9 +4,10 @@ function List({ persons, onDelete, onLike, onLove }) {
 
     return (
         <tbody>
-            {persons.map(item => (
+            {persons.map((item, index) => (
                 <ListItem
                     id={item.id}
+                    number={index}
                     name={item.name}
                     like={item.like}
                     love={item.love}

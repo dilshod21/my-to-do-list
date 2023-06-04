@@ -1,7 +1,23 @@
 import "./adding.css"
 import { useState, } from 'react';
 
-function Adding({}) {
+function Adding({ onAdder, }) {
+
+    const [newMan, setNewMan] = useState("");
+
+    const getValueFunc = (e) => {
+        setNewMan(e.target.value);
+    }
+
+
+    const getName = (e) => {
+        e.preventDefault();
+        const newObj = {id: null, name: newMan, like: false, love: false};
+
+        onAdder(newObj);
+        setNewMan("");
+    }
+
     return (
         <div className="mt-5">
             <h5 className="d-flex align-items-center">
@@ -11,9 +27,16 @@ function Adding({}) {
                 Adding new person!
             </h5>
 
-            <div className="d-flex input-group">
-                <input type="text" className="form-control"/>
-                <button className="btn btn-primary">add</button>
+            <div>
+                <form onSubmit={(e) => {getName(e)}} className="d-flex w-100 input-group">
+                    <input
+                        type="text"
+                        className="form-control"
+                        name="name" placeholder="  ...add new person"
+                        value={newMan} onChange={(e) => {getValueFunc(e)}}
+                    />
+                    <button type="submit" className="btn btn-primary">add</button>
+                </form>
             </div>
         </div>
 
