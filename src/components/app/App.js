@@ -1,6 +1,6 @@
 import { useState, } from 'react';
 import "./App.css"
-
+import List from "../llist/List";
 
 
 
@@ -13,13 +13,22 @@ function App() {
         {id: 4, name: "Dilshod", like: false, love: false}
     ]);
 
+    const onDelete = (id) => {
+        const newArr = persons.filter(c => c.id !== id);
+
+        setPersons(newArr);
+
+        console.log(persons)
+    };
+
 
     return (
         <div className="container">
+            <Searcher getFound={getFound} />
             <div className="row">
                 <div className="col-xl-6 col-lg-8 col-md-10">
                     <table className="table table-striped">
-                        <List persons={persons} />
+                        <List onDelete={onDelete} />
                     </table>
                 </div>
             </div>
