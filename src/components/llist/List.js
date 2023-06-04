@@ -7,7 +7,6 @@ function List({ persons, onDelete, onLike, onLove }) {
             {persons.map(item => (
                 <ListItem
                     id={item.id}
-                    img={item.img}
                     name={item.name}
                     like={item.like}
                     love={item.love}

@@ -1,16 +1,18 @@
 import { useState, } from 'react';
 import "./App.css"
 import List from "../llist/List";
+import Searcher from "../search-part/searcher";
+
 
 
 
 function App() {
 
     const [persons, setPersons] = useState([
-        {id: 1, img: img1, name: "Otabek", like: false, love: false},
-        {id: 2, img: img2, name: "Yusuf", like: false, love: false},
-        {id: 3, img: img3, name: "Sunnat", like: false, love: false},
-        {id: 4, img: img4, name: "Dilshod", like: false, love: false}
+        {id: 1, name: "Otabek", like: false, love: false},
+        {id: 2, name: "Yusuf", like: false, love: false},
+        {id: 3, name: "Sunnat", like: false, love: false},
+        {id: 4, name: "Dilshod", like: false, love: false}
     ]);
 
     const [found, setFound] = useState("")
