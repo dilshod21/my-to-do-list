@@ -58,7 +58,7 @@ function App() {
     return (
         <div className="container">
             <Searcher getFound={getFound} />
-            <div className="row">
+            <div className="row justify-content-center">
                 <div className="col-xl-6 col-lg-8 col-md-10">
                     <table className="table table-striped">
                         <List persons={searching(persons, found)} onDelete={onDelete} onLike={onLike} onLove={onLove} />
