@@ -21,8 +21,6 @@ function App() {
         const newArr = persons.filter(c => c.id !== id);
 
         setPersons(newArr);
-
-        console.log(persons)
     };
 
     const onLike = (id) => {
