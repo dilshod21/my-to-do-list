@@ -4,6 +4,7 @@ import "./App.css"
 import List from "../llist/List";
 import Searcher from "../search-part/searcher";
 import Adding from "../adding-part/Adding";
+import FilterComp from "../filter/Filter";
 
 
 function App() {
@@ -16,7 +17,12 @@ function App() {
     ]);
 
     const [found, setFound] = useState("");
-    const [filter, setFilter] = useState("");
+    const [filter, setFilter] = useState("all");
+
+
+    const allQuantity = persons.length;
+    const likeQuantity = persons.filter(c => c.like).length;
+    const loveQuantity = persons.filter(c => c.love).length;
 
     const onDelete = (id) => {
         const newArr = persons.filter(c => c.id !== id);
@@ -34,7 +40,7 @@ function App() {
 
         return setPersons(newArr)
 
-    }
+    };
 
     const onLove = (id) => {
         const newArr = persons.map(item => {
@@ -44,8 +50,8 @@ function App() {
             return item;
         })
 
-        return setPersons(newArr)
-    }
+        return setPersons(newArr);
+    };
 
     const searching = (arr, found) => {
         if (found.length === 0){
@@ -55,21 +61,48 @@ function App() {
         return arr.filter(item => item.name.toLowerCase().indexOf(found) > -1);
     };
 
-    const getFound = (found) => setFound(found);
+
 
     const onAdder = (newPerson) => {
 
         const newAdder = [...persons , { ...newPerson, id: uuidv4()}];
         setPersons(newAdder);
+    };
+
+    const filtering = (filterName) => {
+        setFilter(filterName);
+    };
+
+    const doingFilter = (arr, filter) => {
+        switch (filter) {
+            case "love":
+                return arr.filter(c => c.love)
+            case "like":
+                return arr.filter(c => c.like)
+            default:
+                return arr
+
+        }
     }
+
+
+
+    const getFound = found => setFound(found);
 
     return (
         <div className="container">
             <Searcher getFound={getFound} />
             <div className="row">
                 <div className="col-xl-6 col-lg-8 col-md-10">
-                    <table className="table table-striped">
-                        <List persons={searching(persons, found)} onDelete={onDelete} onLike={onLike} onLove={onLove} />
+                    <FilterComp
+                        filtering={filtering}
+                        filter={filter}
+                        allQuantity={allQuantity}
+                        likeQuantity={likeQuantity}
+                        loveQuantity={loveQuantity}
+                    />
+                    <table className="table table-striped mt-3">
+                        <List persons={doingFilter(searching(persons, found), filter)} onDelete={onDelete} onLike={onLike} onLove={onLove} />
                     </table>
                     <Adding onAdder={onAdder} />
                 </div>

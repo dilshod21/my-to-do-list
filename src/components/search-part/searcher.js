@@ -24,7 +24,7 @@ function Searcher({ getFound, }) {
                         onChange={getFoundSecond}
                         value={found}
                     />
-                    <span className="input-group-text text-warning">
+                    <span className="input-group-text text-bg-primary">
                         <i className="bi bi-search"></i>
                     </span>
                 </div>
