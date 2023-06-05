@@ -1,7 +1,7 @@
 import "./adding.css"
 import { useState, } from 'react';
 
-function Adding({ onAdder, }) {
+function Adding({ onAdder, night }) {
 
     const [newMan, setNewMan] = useState("");
 
@@ -20,7 +20,7 @@ function Adding({ onAdder, }) {
 
     return (
         <div className="mt-5">
-            <h5 className="d-flex align-items-center">
+            <h5 className={`d-flex align-items-center ${night && "text-light"}`}>
                 <div className="icon-size mx-3">
                     <i className="bi bi-person-add"></i>
                 </div>

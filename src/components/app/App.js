@@ -16,6 +16,8 @@ function App() {
         {id: 4, name: "Dilshod", like: false, love: false}
     ]);
 
+    const [night, setNight] = useState(false);
+
     const [found, setFound] = useState("");
     const [filter, setFilter] = useState("all");
 
@@ -23,6 +25,10 @@ function App() {
     const allQuantity = persons.length;
     const likeQuantity = persons.filter(c => c.like).length;
     const loveQuantity = persons.filter(c => c.love).length;
+
+    const darkTheme = () => {
+        setNight(!night);
+    }
 
     const onDelete = (id) => {
         const newArr = persons.filter(c => c.id !== id);
@@ -90,21 +96,23 @@ function App() {
     const getFound = found => setFound(found);
 
     return (
-        <div className="container">
-            <Searcher getFound={getFound} />
-            <div className="row">
-                <div className="col-xl-6 col-lg-8 col-md-10">
-                    <FilterComp
-                        filtering={filtering}
-                        filter={filter}
-                        allQuantity={allQuantity}
-                        likeQuantity={likeQuantity}
-                        loveQuantity={loveQuantity}
-                    />
-                    <table className="table table-striped mt-3">
-                        <List persons={doingFilter(searching(persons, found), filter)} onDelete={onDelete} onLike={onLike} onLove={onLove} />
-                    </table>
-                    <Adding onAdder={onAdder} />
+        <div className={`full-height ${night && "bg-dark"}`}>
+            <div className="container">
+                <Searcher getFound={getFound} night={night} darkTheme={darkTheme} />
+                <div className="row">
+                    <div className="col-xl-6 col-lg-8 col-md-10">
+                        <FilterComp
+                            filtering={filtering}
+                            filter={filter}
+                            allQuantity={allQuantity}
+                            likeQuantity={likeQuantity}
+                            loveQuantity={loveQuantity}
+                        />
+                        <table className={`table table-striped mt-3 ${night && "table-dark"}`}>
+                            <List persons={doingFilter(searching(persons, found), filter)} onDelete={onDelete} onLike={onLike} onLove={onLove} />
+                        </table>
+                        <Adding onAdder={onAdder} night={night} />
+                    </div>
                 </div>
             </div>
         </div>
