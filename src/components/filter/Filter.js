@@ -23,7 +23,7 @@ function FilterComp({ filtering, filter, allQuantity, likeQuantity, loveQuantity
                             {item.label}
                         </span>
 
-                            <span className="badge text-bg-primary">{item.quantity}</span>
+                            <span className="badge text-bg-info">{item.quantity}</span>
 
                         </button>
                     ))
