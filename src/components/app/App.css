@@ -2,5 +2,9 @@
   font-size: 20px;
 }
 .full-height{
+  width: 100%;
   height: 100vh;
+  position: fixed;
+  bottom: 0;
+  right: 0;
 }
