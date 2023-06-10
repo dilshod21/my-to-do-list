@@ -71,8 +71,12 @@ function App() {
 
     const onAdder = (newPerson) => {
 
-        const newAdder = [...persons , { ...newPerson, id: uuidv4()}];
-        setPersons(newAdder);
+        if (newPerson.name){
+            const newAdder = [...persons , { ...newPerson, id: uuidv4()}];
+            setPersons(newAdder);
+        }else {
+            alert("iltimos ism kiriting !!!");
+        }
     };
 
     const filtering = (filterName) => {
